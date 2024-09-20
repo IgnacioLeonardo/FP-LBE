@@ -2,20 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Pembeli extends Model
+class Pembeli extends Authenticatable
 {
-    use HasFactory;
+    use Notifiable;
 
-    protected $table = 'pembeli'; // specify the table name
+    protected $fillable = [
+        'nama',
+        'email',
+        'nomor_telepon',
+        'password',
+    ];
 
-    
-    public function user()
+    /**
+     * A pembeli can have many carts.
+     */
+    public function carts()
     {
-
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Cart::class);
     }
 }
-
