@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nama',
+        'harga',
+        'jumlah_stock',
+    ];
 
-    protected $table = 'produk';
-
-    protected $fillable = ['nama', 'harga', 'jumlah_stock'];
-    
-    public function suppliers()
+    /**
+     * A product can be in many carts.
+     */
+    public function carts()
     {
-        return $this->belongsToMany(Supplier::class);
+        return $this->belongsToMany(Cart::class, 'cart_produk')
+                    ->withPivot('quantity') // Access the quantity from the pivot table
+                    ->withTimestamps();
     }
 }
-
