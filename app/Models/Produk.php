@@ -9,6 +9,10 @@ class Produk extends Model
 {
     use HasFactory;
 
+    protected $table = 'produk';
+
+    protected $fillable = ['nama', 'harga', 'jumlah_stock'];
+    
     public function suppliers()
     {
         return $this->belongsToMany(Supplier::class);

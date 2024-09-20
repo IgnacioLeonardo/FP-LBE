@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('produk', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Creates an 'id' column as 'bigIncrements'
+            $table->string('nama');
+            $table->decimal('harga', 10, 2);
+            $table->integer('jumlah_stock');
             $table->timestamps();
         });
     }

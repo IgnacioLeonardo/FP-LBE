@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->string('nama');
                 $table->string('email')->unique();
                 $table->string('password');
-                $table->enum('peran', ['admin', 'cashier']);
+                $table->enum('peran', ['admin', 'cashier', '']);
                 $table->timestamps();
             });
     }
